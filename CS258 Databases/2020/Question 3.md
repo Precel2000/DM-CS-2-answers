@@ -28,15 +28,13 @@ WITH SupSup AS (
            Emp.Ssn AS EmpSSN,       Emp.Salary AS EmpSal
     FROM Employee Emp 
         JOIN Employee Sup    ON Emp.Super_ssn = Sup.Ssn 
-        JOIN Employee SupSup ON Sup.Super_ssn = SupSup.Ssn
-)
-
+        JOIN Employee SupSup ON Sup.Super_ssn = SupSup.Ssn) 
 SELECT EmpSal
-FROM SupSup WHERE
-WHERE SSSal > ANY (
+FROM SupSup
+WHERE SupSupSal > ANY (
     SELECT S.Salary FROM Employee E 
         JOIN Employee S ON E.Super_ssn = S.Ssn
-)
+);
 ```
 > SupSup lists the employee’s supervisor’s supervisor with the employee
 > 
